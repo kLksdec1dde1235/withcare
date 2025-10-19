@@ -145,20 +145,40 @@
       <div class="t2" style="margin:40px 0 80px;"><span class="em">그대로 방치하면<br>안되는 이유?</span></div>
     </div>
 
-    <div class="news" role="list">
-      <article class="card" data-tilt="1" role="listitem">
-        <div class="fullimg" style="background-image:url('./img/article-1.png')"></div>
-      </article>
-      <article class="card" data-tilt="2" role="listitem">
-        <div class="fullimg" style="background-image:url('./img/article-2.png')"></div>
-      </article>
-      <article class="card" data-tilt="3" role="listitem">
-        <div class="fullimg" style="background-image:url('./img/article-3.png')"></div>
-      </article>
-      <article class="card" data-tilt="4" role="listitem">
-        <div class="fullimg" style="background-image:url('./img/article-4.png')"></div>
-      </article>
+   <section id="withcareFeatureBanners" aria-label="한국위드케어협회 특징 배너 3종 (각 카드별 배경 이미지 교체 가능)">
+
+
+  <!-- Card 1 -->
+  <div class="card c1" style="--bg:url('./img/rust1.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line">녹물 수돗물 중금속 오염 증가</span>
+      <span class="line block" style="margin-top:6px;">납 29배 망간 70배 기준치 초과</span>
+      <span>* 전남 수돗물 대란 당시 실제 오염수치</span>
     </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card c2" style="--bg:url('./img/fatal2.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line hl">아토피, 피부질환</span>
+      <span class="line " style="margin-top:.25em;">발병 및 악화의 원인</span>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card c3" style="--bg:url('./img/fatal3.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line">녹과 슬러지로 인한</span>
+      <span class="line hl" style="margin-top:.25em;">난방 효율 저하</span>
+    </div>
+  </div>
+</section>
 
     <div class="head" style="margin:80px 0;">
       <div class="t1" style="line-height:140%;">
@@ -169,23 +189,198 @@
       </div>
 
       <!-- ✅ 이 hr의 바로 아래부터 배경이 화이트로 그라데이션 전환됨 -->
-      <hr id="whiteStartHR" style="margin:30px auto;padding:80px 0;width:0px;border:1.5px solid #fff;border-radius:6px;">
+      <hr id="whiteStartHR" style="margin:30px auto;padding:120px 0;width:0px;border:1.5px solid #fff;border-radius:6px;">
 
       <!-- ✅ on-white 톤 전환 + SPIN: P → I 자연스러운 문구 -->
-      <div class="onWhiteArea" style="margin: 26px 0 80px;">
+      <div class="onWhiteArea" style="margin: 26px 0 0px;">
         <!-- Lead (I로 넘어가는 전환 헤드라인) -->
         <div class="lead">
           이대로 미루면<br><span class="em-soft">관 내부 부식이 더 빨라지고</span><br><span class="em-soft">누수·교체 비용은<br>눈덩이처럼 커집니다.</span>
         </div>
         <!-- Sub copy (Implication을 구체화: 건강·생활·비용의 파급) -->
         <p class="sub">
-          수질이 나빠질수록<br>피부 자극·아토피 악화<br>가능성은 높아지고,<br>가전·배관 수명은 단축됩니다.<br><br>
-          철분·침전물이 쌓이면<br>필터 교체 주기는 짧아지고,<br><strong>파열 시엔 벽체·마루 복구까지</strong><br>포함된 큰 비용으로 이어지는 만큼
-          <br><br>배관 관리를 통해<br><span class="em-soft">불필요한 지출과 건강 리스크를<br>미리 차단하는게 중요합니다.</span>
+          수질이 나빠질수록<br>피부 자극·아토피 악화<br>가능성은 높아지고<br>
+          </span>
         </p>
         <!-- 작은 신뢰·긴급성 칩 -->
         <!-- <span class="chip" aria-hidden="true">지금 점검이, 나중 공사비를 줄입니다</span> -->
       </div>
+
+<section id="withcareFeatureCards" aria-label="한국위드케어협회 특징 배너 3종 (각 카드별 배경 이미지 교체 가능)">
+  <style>
+    /* ================= Scope: #withcareFeatureCards only ================= */
+    #withcareFeatureCards { 
+      --ink:#111; 
+      --white:#fff; 
+      --blue:#0b5ed7; 
+      --bg:#0f0f10; 
+      --cardRadius:26px; 
+      --gap:28px; 
+      --shadow:0 14px 40px rgba(0,0,0,.5);
+      --maxW:980px; 
+      font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; 
+      background:#fff; 
+      padding:76px 18px; 
+      display:grid; 
+      place-items:center; 
+      row-gap:var(--gap);
+    }
+
+    #withcareFeatureCards .card {
+      position:relative; 
+      width:100%; 
+      max-width:var(--maxW); 
+      height:272px; 
+      border-radius:var(--cardRadius); 
+      overflow:hidden; 
+      box-shadow:var(--shadow);
+      display:grid; 
+      grid-template-columns:1fr; 
+      grid-template-rows:1fr; 
+      isolation:isolate; 
+    }
+
+    /* ✅ 각 카드별 배경 이미지를 var(--bg)로 쉽게 교체 가능 */
+    #withcareFeatureCards .bg {
+      position:absolute; inset:0; 
+      background-image:var(--bg);
+      background-position:center; 
+      background-size:cover; 
+      transform:scale(1); 
+      transition:transform .55s ease; 
+    }
+    #withcareFeatureCards .card:hover .bg { transform:scale(1.03); }
+
+    /* 공통 어둡기 (개별 카드에서 shade 조절 가능) */
+    #withcareFeatureCards .shade { 
+      position:absolute; inset:0; z-index:1; 
+      background:rgba(0,0,0,.25); 
+    }
+
+    /* 공통 문구 박스 */
+    #withcareFeatureCards .txt {
+      position:relative; z-index:3; 
+      color:var(--white); 
+      line-height:1.38; 
+      font-weight:800; 
+      letter-spacing:-.3px;
+      display:grid; gap:.24em; 
+    }
+
+    #withcareFeatureCards .line { font-size:26px; }
+
+    /* 파란 강조 배지 */
+    #withcareFeatureCards .hl {
+      background:#d78e0b94; 
+      padding:8px 14px; 
+      border-radius:10px; 
+      display:inline-block; 
+    }
+
+    /* ====== 카드 1 (왼쪽 정렬) ====== */
+    #withcareFeatureCards .c1 .txt {
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left;
+    }
+    #withcareFeatureCards .c1 .block { 
+      display:inline-block; 
+      background:#d78e0b94; 
+      padding:10px 16px; 
+      border-radius:12px; 
+    }
+
+    /* ====== 카드 2 (우측 정렬 + 베이지 자격증 톤) ====== */
+    #withcareFeatureCards .c2::before {
+      content:""; position:absolute; z-index:2; 
+      left:22px; right:52%; top:22px; bottom:22px; 
+      border-radius:20px; 
+    }
+    #withcareFeatureCards .c2 .txt { 
+      justify-self:end; align-self:center; 
+      margin-right:32px; 
+      text-align:right; 
+    }
+
+    /* ====== 카드 3 (좌측 문구 + 대각 분할 톤) ====== */
+    #withcareFeatureCards .c3::before {
+      content:""; position:absolute; inset:0; z-index:2; pointer-events:none; 
+      mix-blend-mode:screen;
+    }
+    #withcareFeatureCards .c3 .txt { 
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left; 
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+
+    /* ====== 카드 4 (가운데 정렬) ====== */
+    #withcareFeatureCards .c4::before {
+      content:""; position:absolute; inset:0; z-index:2; pointer-events:none; 
+      mix-blend-mode:screen;
+    }
+    #withcareFeatureCards .c4 .txt { 
+      justify-self:center; align-self:center; 
+      text-align:center; 
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+    
+    /* 반응형 */
+    @media (max-width:980px){
+      #withcareFeatureCards .card{ height:260px; }
+      #withcareFeatureCards .line{ font-size:24px; }
+    }
+    @media (max-width:720px){
+      #withcareFeatureCards{ padding:60px 14px; row-gap:18px; }
+      #withcareFeatureCards .card{ height:220px; border-radius:20px; }
+      #withcareFeatureCards .line{ font-size:19px; }
+      #withcareFeatureCards .c2::before{ left:16px; top:16px; bottom:16px; right:52%; border-radius:16px; }
+      #withcareFeatureCards .c2 .txt{ margin-right:20px; }
+      #withcareFeatureCards .c3 .txt{ margin-left:20px; }
+      #withcareFeatureCards .c1 .txt{ margin-left:20px; }
+    }
+  </style>
+
+  <!-- Card 1 -->
+  <div class="card c1" style="--bg:url('./img/fatal1.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line">가전제품, 배관의</span>
+      <span class="line block" style="margin-top:6px;">수명이 단축됩니다.</span>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card c2" style="--bg:url('./img/filter.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line hl">철분, 침전물 과다로</span>
+      <span class="line" style="margin-top:.25em;">필터 주기 짧아짐</span>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card c3" style="--bg:url('./img/fatal4.jpg');">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line">파열, 누수 발생 시</span>
+      <span class="line hl" style="margin-top:.25em;">천장·마루 피해가 커짐</span>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card c4" style="--bg:url('./img/p1.jpeg'); text-align:center;">
+    <i class="bg" aria-hidden="true"></i>
+    <i class="shade" aria-hidden="true"></i>
+    <div class="txt">
+      <span class="line">근본적인 배관 관리를 통해<br></span>
+      <span class="line hl" style="margin-top:.25em;">불필요한 지출과<br>건강 리스크를<br>미리 차단 중요</span>
+    </div>
+  </div>
+</section>
+
+
     </div>
   </div>
 
@@ -193,9 +388,7 @@
 </section>
 
 <section id="legalDBHero" aria-label="개인회생·파산 실시간 DB 공급 · 프리미엄 다크/글래스 리디자인 (5개 가시)">
-  <style>
-  
-  </style>
+
 
   <!-- 배경: 비디오 (이미지 대신 사용) -->
   <div class="bg-deck" aria-hidden="true">
