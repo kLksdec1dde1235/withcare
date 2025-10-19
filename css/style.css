@@ -1186,7 +1186,7 @@
       color:var(--ink);
       background:#fff;
       position:relative; isolation:isolate; overflow:hidden;
-      padding:120px 16px;
+      padding:140px 16px 60px;
     }
     #applyMintForm .wrap{max-width:960px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:min(5vw,48px); align-items:stretch;}
     @media (max-width:940px){ #applyMintForm .wrap{grid-template-columns:1fr; gap:24px;} }
@@ -1328,3 +1328,265 @@
       transform:translateY(-50%) rotate(-135deg);
     }
   }
+
+   /* ================= Scope: #withcareFeatureCards only ================= */
+    #withcareFeatureCards { 
+      --ink:#111; 
+      --white:#fff; 
+      --blue:#0b5ed7; 
+      --bg:#0f0f10; 
+      --cardRadius:26px; 
+      --gap:28px; 
+      --shadow:0 14px 40px rgba(0,0,0,.5);
+      --maxW:980px; 
+      font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; 
+      background:#fff; 
+      padding:76px 18px; 
+      display:grid; 
+      place-items:center; 
+      row-gap:var(--gap);
+    }
+
+    #withcareFeatureCards .card {
+      position:relative; 
+      width:100%; 
+      max-width:var(--maxW); 
+      height:272px; 
+      border-radius:var(--cardRadius); 
+      overflow:hidden; 
+      box-shadow:var(--shadow);
+      display:grid; 
+      grid-template-columns:1fr; 
+      grid-template-rows:1fr; 
+      isolation:isolate; 
+    }
+
+    /* ✅ 각 카드별 배경 이미지를 var(--bg)로 쉽게 교체 가능 */
+    #withcareFeatureCards .bg {
+      position:absolute; inset:0; 
+      background-image:var(--bg);
+      background-position:center; 
+      background-size:cover; 
+      transform:scale(1); 
+      transition:transform .55s ease; 
+    }
+    #withcareFeatureCards .card:hover .bg { transform:scale(1.03); }
+
+    /* 공통 어둡기 (개별 카드에서 shade 조절 가능) */
+    #withcareFeatureCards .shade { 
+      position:absolute; inset:0; z-index:1; 
+      background:rgba(0,0,0,.25); 
+    }
+
+    /* 공통 문구 박스 */
+    #withcareFeatureCards .txt {
+      position:relative; z-index:3; 
+      color:var(--white); 
+      line-height:1.38; 
+      font-weight:800; 
+      letter-spacing:-.3px;
+      display:grid; gap:.24em; 
+    }
+
+    #withcareFeatureCards .line { font-size:26px; }
+
+    /* 파란 강조 배지 */
+    #withcareFeatureCards .hl {
+      background:#d78e0b94; 
+      padding:8px 14px; 
+      border-radius:10px; 
+      display:inline-block; 
+    }
+
+    /* ====== 카드 1 (왼쪽 정렬) ====== */
+    #withcareFeatureCards .c1 .txt {
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left;
+    }
+    #withcareFeatureCards .c1 .block { 
+      display:inline-block; 
+      background:#d78e0b94; 
+      padding:10px 16px; 
+      border-radius:12px; 
+    }
+
+    /* ====== 카드 2 (우측 정렬 + 베이지 자격증 톤) ====== */
+    #withcareFeatureCards .c2::before {
+      content:""; position:absolute; z-index:2; 
+      left:22px; right:52%; top:22px; bottom:22px; 
+      border-radius:20px; 
+    }
+    #withcareFeatureCards .c2 .txt { 
+      justify-self:end; align-self:center; 
+      margin-right:32px; 
+      text-align:right; 
+    }
+
+    /* ====== 카드 3 (좌측 문구 + 대각 분할 톤) ====== */
+    #withcareFeatureCards .c3::before {
+      content:""; position:absolute; inset:0; z-index:2; pointer-events:none; 
+      mix-blend-mode:screen;
+    }
+    #withcareFeatureCards .c3 .txt { 
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left; 
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+
+    /* ====== 카드 4 (가운데 정렬) ====== */
+    #withcareFeatureCards .c4::before {
+      content:""; position:absolute; inset:0; z-index:2; pointer-events:none; 
+      mix-blend-mode:screen;
+    }
+    #withcareFeatureCards .c4 .txt { 
+      justify-self:center; align-self:center; 
+      text-align:center; 
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+    
+    /* 반응형 */
+    @media (max-width:980px){
+      #withcareFeatureCards .card{ height:260px; }
+      #withcareFeatureCards .line{ font-size:24px; }
+    }
+    @media (max-width:720px){
+      #withcareFeatureCards{ padding:60px 14px; row-gap:18px; }
+      #withcareFeatureCards .card{ height:220px; border-radius:20px; }
+      #withcareFeatureCards .line{ font-size:19px; }
+      #withcareFeatureCards .c2::before{ left:16px; top:16px; bottom:16px; right:52%; border-radius:16px; }
+      #withcareFeatureCards .c2 .txt{ margin-right:20px; }
+      #withcareFeatureCards .c3 .txt{ margin-left:20px; }
+      #withcareFeatureCards .c1 .txt{ margin-left:20px; }
+    }
+
+     /* ================= Scope: #withcareFeatureBanners only ================= */
+    #withcareFeatureBanners { 
+      --ink:#111; 
+      --white:#fff; 
+      --blue:#0b5ed7; 
+      --bg:#0f0f10; 
+      --cardRadius:26px; 
+      --gap:28px; 
+      --shadow:0 14px 40px rgba(0,0,0,.5);
+      --maxW:980px; 
+      font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; 
+      background:var(--bg) url('./img/bg_texture_dark.jpg') center/cover no-repeat; 
+      padding:76px 18px; 
+      display:grid; 
+      place-items:center; 
+      row-gap:var(--gap);
+    }
+
+    #withcareFeatureBanners .card {
+      position:relative; 
+      width:100%; 
+      max-width:var(--maxW); 
+      height:272px; 
+      border-radius:var(--cardRadius); 
+      overflow:hidden; 
+      box-shadow:var(--shadow);
+      display:grid; 
+      grid-template-columns:1fr; 
+      grid-template-rows:1fr; 
+      isolation:isolate; 
+    }
+
+    /* ✅ 각 카드별 배경 이미지를 var(--bg)로 쉽게 교체 가능 */
+    #withcareFeatureBanners .bg {
+      position:absolute; inset:0; 
+      background-image:var(--bg);
+      background-position:center; 
+      background-size:cover; 
+      transform:scale(1); 
+      transition:transform .55s ease; 
+    }
+    #withcareFeatureBanners .card:hover .bg { transform:scale(1.03); }
+
+    /* 공통 어둡기 (개별 카드에서 shade 조절 가능) */
+    #withcareFeatureBanners .shade { 
+      position:absolute; inset:0; z-index:1; 
+      background:rgba(0,0,0,.25); 
+    }
+
+    /* 공통 문구 박스 */
+    #withcareFeatureBanners .txt {
+      position:relative; z-index:3; 
+      color:var(--white); 
+      line-height:1.38; 
+      font-weight:800; 
+      letter-spacing:-.3px;
+      display:grid; gap:.24em; 
+    }
+
+    #withcareFeatureBanners .line { font-size:26px; }
+
+    /* 파란 강조 배지 */
+    #withcareFeatureBanners .hl {
+      background:#d78e0b94; 
+      padding:8px 14px; 
+      border-radius:10px; 
+      display:inline-block; 
+      /* box-shadow:0 6px 16px rgba(11,94,215,.35); */
+    }
+
+    /* ====== 카드 1 (왼쪽 정렬) ====== */
+    /* #withcareFeatureBanners .c1 .shade { background:linear-gradient(120deg, rgba(0,0,0,.55) 0 46%, rgba(0,0,0,.08) 46% 100%); } */
+    #withcareFeatureBanners .c1 .txt {
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left;
+    }
+    #withcareFeatureBanners .c1 .block { 
+      display:inline-block; 
+      background:#d78e0b94; 
+      padding:10px 16px; 
+      border-radius:12px; 
+    }
+
+    /* ====== 카드 2 (우측 정렬 + 베이지 자격증 톤) ====== */
+    /* #withcareFeatureBanners .c2 .shade { background:linear-gradient(60deg, rgba(0,0,0,.10) 0 45%, rgba(0,0,0,.35) 45% 100%); } */
+    #withcareFeatureBanners .c2::before {
+      content:""; position:absolute; z-index:2; 
+      left:22px; right:52%; top:22px; bottom:22px; 
+      /* background:linear-gradient(180deg,#f1e5d6,#dfcdb8);  */
+      border-radius:20px; 
+      /* box-shadow:inset 0 2px 6px rgba(0,0,0,.1), 0 8px 20px rgba(0,0,0,.2); */
+    }
+    #withcareFeatureBanners .c2 .txt { 
+      justify-self:end; align-self:center; 
+      margin-right:32px; 
+      text-align:right; 
+    }
+
+    /* ====== 카드 3 (좌측 문구 + 대각 분할 톤) ====== */
+    /* #withcareFeatureBanners .c3 .shade { background:linear-gradient(120deg, rgba(0,0,0,.55) 0 46%, rgba(0,0,0,.08) 46% 100%); } */
+    #withcareFeatureBanners .c3::before {
+      content:""; position:absolute; inset:0; z-index:2; pointer-events:none; 
+      /* background:linear-gradient(120deg, rgba(255,255,255,.0) 44%, rgba(255,255,255,.92) 46% 100%); */
+      mix-blend-mode:screen;
+    }
+    #withcareFeatureBanners .c3 .txt { 
+      justify-self:start; align-self:center; 
+      margin-left:36px; text-align:left; 
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+
+    /* 반응형 */
+    @media (max-width:980px){
+      #withcareFeatureBanners .card{ height:260px; }
+      #withcareFeatureBanners .line{ font-size:24px; }
+    }
+    @media (max-width:720px){
+      #withcareFeatureBanners{ padding:60px 14px; row-gap:18px; }
+      #withcareFeatureBanners .card{ height:220px; border-radius:20px; }
+      #withcareFeatureBanners .line{ font-size:19px; }
+      #withcareFeatureBanners .c2::before{ left:16px; top:16px; bottom:16px; right:52%; border-radius:16px; }
+      #withcareFeatureBanners .c2 .txt{ margin-right:20px; }
+      #withcareFeatureBanners .c3 .txt{ margin-left:20px; }
+      #withcareFeatureBanners .c1 .txt{ margin-left:20px; }
+    }
+
+        @media (max-width:520px){
+                #withcareFeatureBanners .c2 .txt{ margin-right:7px; }
+      #withcareFeatureBanners .c3 .txt{ margin-left:7px; }
+      #withcareFeatureBanners .c1 .txt{ margin-left:7px; }
+        }
