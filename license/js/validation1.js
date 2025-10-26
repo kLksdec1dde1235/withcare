@@ -78,14 +78,11 @@ $(document).ready(function(){
            $('#form_e11').prop("action", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfcKvQxk2tJeXQ2EZcUO2qJTUHkiu-LKaTVzwN0D7Q7efbBNw/formResponse");
            $('#send_message').attr({'disabled' : 'true', 'value' : '전송 중입니다' });
            
-            
      $('#send_message').prop("disabled", false);
     $('#send_message').css({transition:"1s"});
     $('#send_message').css({background:"#222222"});
     $('#send_message').css({color:"#fff"});
-    // $('[name="fm"]').submit();
-    $('#hidden_iframe11').attr("onload", "dll();");
-    $('#hidden_iframe12').attr("onload", "hoa();");
+    $('#hidden_iframe11').attr("onload", "hoa2();");
    
         }
     });    
@@ -108,14 +105,13 @@ function maxLengthCheck(object){
   }    
 }
  
- function hoa(){
-    setTimeout( function(){
-        alert("보시면 더 좋은 자격증 혜택!\n\n맞춤형화장품조제관리사 (초봉 3000 이상)\n농산물품질관리사 (초봉 4000 이상)\n수강료 지원 혜택");
-        $(window).scrollTop(0);
+  function hoa2(){ 
+       setTimeout( function(){
+        alert("신청이 완료되었습니다.");
+        // $(window).scrollTop(0);
         // window.location.reload();
-        window.location.href='./result1.html';
+         window.location.href = './result.html';
        },1500);
-
  }
  
  function site1111(){
@@ -169,8 +165,8 @@ function maxLengthCheck(object){
 
 
 
-    if (license != null)
-    {
+    // if (license != null)
+    // {
 
     if(regex2.test(name) && name.length > 1 )
     {
@@ -276,15 +272,15 @@ function maxLengthCheck(object){
         $('#send_message').css({background:"#595959"});
         $('#send_message').css({cursor:"default"});     
     }
-    }
-    else
-    {
-        $('#send_message').css({transition:"1s"});
-        $('#send_message').prop("disabled", true);
-        $('#send_message').prop("value", "자격증 종류를 선택하세요.");
-        $('#send_message').css({background:"#595959"});
-        $('#send_message').css({cursor:"default"});        
-    }
+    // }
+    // else
+    // {
+    //     $('#send_message').css({transition:"1s"});
+    //     $('#send_message').prop("disabled", true);
+    //     $('#send_message').prop("value", "자격증 종류를 선택하세요.");
+    //     $('#send_message').css({background:"#595959"});
+    //     $('#send_message').css({cursor:"default"});        
+    // }
  }
   
 //  function lic_pick(){
@@ -368,6 +364,6 @@ function maxLengthCheck(object){
 
 $(function(){
  $('#name,#phone,#position,#id-number,#message,#agree11,#license').bind("keyup click change",form_check);
- $('#name,#phone,#position,#id-number,#message,#license').bind("keyup click change",form_check1);
- $('#license').bind("keyup click change",lic_pick);
+//  $('#name,#phone,#position,#id-number,#message,#license').bind("keyup click change",form_check1);
+//  $('#license').bind("keyup click change",lic_pick);
 })
