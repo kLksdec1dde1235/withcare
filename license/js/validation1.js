@@ -76,7 +76,16 @@ $(document).ready(function(){
            // Disable submit button just after the form processed 1st time successfully.
           
            $('#form_e11').prop("action", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfcKvQxk2tJeXQ2EZcUO2qJTUHkiu-LKaTVzwN0D7Q7efbBNw/formResponse");
-           $('#send_message').attr({'disabled' : 'true', 'value' : '전송 중입니다' });
+        $('#send_message').attr({'disabled' : 'true', 'value' : '전송 중입니다' });
+
+setTimeout(() => {
+    $('#send_message').val('조금만 기다려주세요');
+}, 1000);
+
+setTimeout(() => {
+    $('#send_message').val('신청이 곧 완료됩니다.');
+}, 2000);
+
            
      $('#send_message').prop("disabled", false);
     $('#send_message').css({transition:"1s"});
