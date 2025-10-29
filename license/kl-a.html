@@ -506,9 +506,6 @@
     
 </div><!-- contentsWrap end -->
 
-   
-
-
 
     <div class="wrap linkWrap">
         <div class="sec00 contents" style="padding-top:80px;">
@@ -581,13 +578,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-   
-</div>
-</div>
 
 
 <div class="review">
@@ -823,7 +813,168 @@ padding-bottom:6px;
 
 <!-- <div id="lm"></div> -->
 
+    <!-- ===================== 오시는 길 섹션 (카카오맵 퍼가기 코드 적용 + 100% 너비/높이) ===================== -->
+<section id="clinicRouteS1" aria-label="오시는 길 섹션 (지도 + 정보 패널)">
+  <style>
+    /* ================= Scope: #clinicRouteS1 only ================= */
+    #clinicRouteS1{
+      --panel:#2b2c30;            /* 우측 패널 배경 */
+      --ink:#f4f4f5;              /* 본문 텍스트 */
+      --muted:#c7c7cb;            /* 보조 텍스트 */
+      --label:#9ca3af;            /* 항목 라벨 색 */
+      --em:#d9b58a;               /* 포인트(전화번호) */
+      --line:rgba(255,255,255,.12);
+      --ring:rgba(255,255,255,.05);/* 워터마크 링 */
+      --maxW:1280px;
+      --gap:0;
+      font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ink);
+      display:grid;
+      grid-template-columns: 1fr 520px; /* 지도 / 패널 */
+      gap:var(--gap);
+      align-items:stretch;
+      max-width:var(--maxW);
+      margin:0 auto;
+      background:#fff;            /* 좌측 지도 경계 대비용 */
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+      margin:100px auto;
 
+    }
+
+    /* 지도 영역 */
+    #clinicRouteS1 .mapWrap{
+      position:relative;
+      min-height:clamp(420px, 70vh, 820px); /* 화면 높이에 자연스럽게 맞춤 */
+      background:#0e0e0f;
+      isolation:isolate;
+    }
+
+    /* kakao roughmap가 들어가는 컨테이너를 강제로 100% 채우도록 */
+    #clinicRouteS1 #daumRoughmapContainer1761708016962.root_daum_roughmap{
+      position:absolute; inset:0;
+      width:100% !important; height:100% !important;
+    }
+    /* 내부 요소 높이 상쇄(카카오가 인라인 픽셀값을 줄 때가 있어서 강제 100%) */
+    #clinicRouteS1 .root_daum_roughmap .wrap_map,
+    #clinicRouteS1 .root_daum_roughmap .map_border,
+    #clinicRouteS1 .root_daum_roughmap .map{
+      height:100% !important;
+    }
+
+    #clinicRouteS1 .mapFallback{ /* iframe/지도 로드 실패 시 노출용 */
+      position:absolute; inset:0; display:grid; place-items:center;
+      color:#e5e7eb; background:linear-gradient(135deg,#202124,#16181d);
+      font-weight:600; letter-spacing:.05em; pointer-events:none;
+    }
+
+    /* 정보 패널 */
+    #clinicRouteS1 .panel{
+      background:
+        radial-gradient(480px 480px at 90% 20%, var(--ring) 0 60%, transparent 62%),
+        var(--panel);
+      padding:56px 48px 52px;
+    }
+    #clinicRouteS1 .title{
+      font-size:44px; line-height:1.15; font-weight:800; letter-spacing:-0.02em; margin:4px 0 36px;
+    }
+    #clinicRouteS1 .rows{ display:grid; gap:22px; }
+    #clinicRouteS1 .row{ display:grid; grid-template-columns: 96px 1fr; gap:18px; align-items:start; padding:18px 0; border-top:1px solid var(--line); }
+    #clinicRouteS1 .row:first-child{ border-top:0; padding-top:0; }
+    #clinicRouteS1 .label{ color:var(--label); font-size:14px; letter-spacing:.08em; font-weight:700; padding-top:2px; }
+    #clinicRouteS1 .content{ color:var(--ink); font-size:16px; line-height:1.75; }
+    #clinicRouteS1 .content .dim{ color:var(--muted); }
+
+    #clinicRouteS1 .phoneBox{border-top:1px solid var(--line); }
+    #clinicRouteS1 .phone{ font-size:42px; line-height:1.2; font-weight:800; letter-spacing:.02em; color:var(--em); white-space:nowrap; }
+
+    /* 반응형 */
+    @media (max-width: 1100px){
+      #clinicRouteS1{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px){
+      #clinicRouteS1{ grid-template-columns: 1fr; border-radius:14px; }
+      #clinicRouteS1 .mapWrap{ min-height:60vh; }
+      #clinicRouteS1 .panel{ padding:36px 22px 32px; }
+      #clinicRouteS1 .title{ font-size:34px; margin-bottom:26px; }
+      #clinicRouteS1 .row{ grid-template-columns: 1fr; gap:14px; padding:16px 0; }
+      #clinicRouteS1 .phone{ font-size:34px; }
+    }
+  </style>
+
+  <!-- 좌측: 지도 (카카오 지도 퍼가기 - 화면 너비/높이에 맞춰 자동 확장) -->
+  <div class="mapWrap">
+    <!-- 1) 지도 노드 (요청하신 퍼가기 코드의 컨테이너/타임스탬프 적용) -->
+    <div id="daumRoughmapContainer1761708016962" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+    <!-- 2) 설치 스크립트 (여러 지도를 쓸 경우, 페이지 전체에 1회만 포함하십시오) -->
+    <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+    <!-- 3) 실행 스크립트 : 폭/높이를 100%로 세팅하여 섹션에 완전 맞춤 -->
+    <script charset="UTF-8">
+      (function(){
+        /* 카카오 퍼가기 실행 (요청하신 key/timestamp로 교체) */
+        new daum.roughmap.Lander({
+          "timestamp" : "1761708016962",
+          "key"       : "bn6bqs7eadz",
+          "mapWidth"  : "100%",
+          "mapHeight" : "100%"
+        }).render();
+
+        /* 렌더 후에도 100% 유지 (일부 환경에서 인라인 px 강제되는 경우 보정) */
+        function fitKakaoMap(){
+          var sec  = document.getElementById('clinicRouteS1');
+          if(!sec) return;
+          var wrap = sec.querySelector('.mapWrap');
+          var box  = sec.querySelector('#daumRoughmapContainer1761708016962');
+          if(wrap && box){
+            box.style.width  = '100%';
+            box.style.height = wrap.clientHeight + 'px';
+          }
+        }
+        window.addEventListener('resize', fitKakaoMap, {passive:true});
+        /* 초기/비동기 렌더링 대비 다회 호출 */
+        setTimeout(fitKakaoMap, 200);
+        setTimeout(fitKakaoMap, 800);
+        setTimeout(fitKakaoMap, 1600);
+      })();
+    </script>
+
+    <div class="mapFallback">MAP PREVIEW</div>
+  </div>
+
+  <!-- 우측: 정보 패널 -->
+  <aside class="panel">
+    <h2 class="title">자격증 교육장 정보</h2>
+    <div class="rows">
+      <div class="row">
+        <div class="label">주소</div>
+        <div class="content">
+          서울시 송파구 새말로 155 동화빌딩 301호<br>
+          <span class="dim">문정역 2번출구로 나와 800m</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">운영시간</div>
+        <div class="content">
+          월 <strong>오전 9시 ~ 오후 6시까지</strong> <span class="dim">(점심 오후 1:00 ~ 오후 2:00)</span><br>
+          화/수/목(평일반): <strong>오전 10시 ~ 오후 6시까지</strong> <span class="dim">(점심 오후 1:00 ~ 오후 2:00)</span><br>
+          금/토/일(주말반): <strong>오전 10시 ~ 오후 6시까지</strong> <span class="dim">(점심 오후 1:00 ~ 오후 2:00)</span><br>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="label">상담전화</div>
+        <div class="content phoneBox">
+          <div class="phone"><a href="tel:1600-4437" style="color:#d9b58a;text-decoration: none;">1600-4437</a></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</section>
 
 <div id="footer"></div>
 
@@ -907,6 +1058,9 @@ padding-bottom:6px;
         </div>
     </div>
     <!--footer 끝-->
+
+
+
 
     <script src="./js/menu.js" ></script>
     <script src="./js/form1.js"></script>
