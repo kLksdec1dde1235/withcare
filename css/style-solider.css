@@ -160,7 +160,7 @@
     /* 텍스트 */
     #energyHL .txt{
       position:relative;z-index:2;
-      color:#fff;line-height:1.42;font-weight:800;
+      color:#fff;line-height:1.42;font-weight:500;
       font-size:1.58rem;letter-spacing:-.2px;
       margin:0;padding:0 var(--padX);text-align:left;
       opacity:var(--txtDim);
