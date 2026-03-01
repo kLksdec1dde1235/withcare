@@ -173,15 +173,15 @@
 
     @media (max-width:600px){
       #energyHL{--hRow:138px;--padX:18px;}
-      #energyHL .txt{font-size:1.36rem;}
+      #energyHL .txt{font-size:.8rem;font-weight:600;}
     }
 
     /* ===== 배경 이미지 ===== */
-    #energyHL .r1 .bg{background-image:url('../img/intro-1.jpg');}
-    #energyHL .r2 .bg{background-image:url('../img/pay.jpg');}
-    #energyHL .r3 .bg{background-image:url('../img/water.jpg');}
-    #energyHL .r4 .bg{background-image:url('../img/rust.jpg');}
-    #energyHL .r5 .bg{background-image:url('../img/filter.jpg');}
+    #energyHL .r1 .bg{background-image:url('../img/1.jpg');}
+    #energyHL .r2 .bg{background-image:url('../img/2.jpg');}
+    #energyHL .r3 .bg{background-image:url('../img/3.jpg');}
+    #energyHL .r4 .bg{background-image:url('../img/4.jpg');}
+    #energyHL .r5 .bg{background-image:url('../img/5.jpg');}
 
 
      /* ================= Scope: #albuminWarn only ================= */
