@@ -110,70 +110,178 @@
       margin:0;padding:0;
     }
     /* ================= Scope: #energyHL only ================= */
+    /* ================= Scope: #energyHL only ================= */
     #energyHL{
       --maxW:800px;
-      --hRow:200px;
+      --hRow:295px;           /* PC 기준 최소 높이 */
       --padX:26px;
-      --dim:.18;
-      --bright:1;
-      --txtDim:.28;
+
+      --dim:.18;              /* 이미지 밝기(낮을수록 어두움) */
       --yellow:#ffb400;
       --gapShade:rgba(0,0,0,.85);
+
+      /* ✅ 모바일에서 자동으로 안정적인 크기/비율로 반응 */
+      --fz:clamp(1.02rem, 2.8vw, 1.58rem);
+      --lh:1.55;              /* descender 잘림 방지 + 가독성 */
+      --ls:-.15px;
+
       font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      width:100%;max-width:var(--maxW);margin:0 auto;overflow:hidden;position:relative;
+      width:100%;
+      max-width:var(--maxW);
+      margin:0 auto;
+      overflow:hidden;
+      position:relative;
       background:#000;
 
       /* ✅ 섹션 외곽 여백을 #000로 칠하기 (body는 변경 없음) */
       box-shadow:0 0 0 100vmax #000;
       clip-path:inset(0 -100vmax);
       padding-top:80px;
+
+      /* ✅ iOS/모바일 글자 깨짐/자동확대 방지 */
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     #energyHL .row{
-      position:relative;height:var(--hRow);
-      display:flex;align-items:center;justify-content:flex-start;
-      overflow:hidden;
+      position:relative;
+
+      /* ✅ 핵심: height 고정 금지 → 텍스트 줄 수에 따라 자연 확장 */
+      height:auto;
+      min-height:var(--hRow);
+
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+
+      /* ✅ 텍스트 아래 잘림 방지용 여백(특히 모바일에서 필수) */
+      padding-block:18px;
+
+      overflow:hidden; /* 배경은 잘라야 해서 유지 */
+      box-sizing:border-box;
     }
 
     /* 이미지 전용 레이어 */
     #energyHL .bg{
-      position:absolute;inset:0;
-      background-size:cover;background-repeat:no-repeat;background-color:#000;
+      position:absolute; inset:0;
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-color:#000;
+
+      /* 기존 dim 유지 */
       filter:brightness(var(--dim));
       transition:none;
       z-index:0;
+
+      transform:translateZ(0);
+      will-change:transform;
     }
 
     /* 좌/우 포지션 */
     #energyHL .left .bg{background-position:left center;}
     #energyHL .right .bg{background-position:right center;}
 
-    /* 어두운 오버레이 */
+    /* ✅ 어두운 오버레이(가독성 확보) */
     #energyHL .shade{
-      position:absolute;inset:0;
-      background:rgba(0,0,0,.62);
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0.76);
       opacity:1;
       pointer-events:none;
       z-index:1;
     }
 
-    /* 텍스트 */
+    /* ✅ 텍스트 */
     #energyHL .txt{
-      position:relative;z-index:2;
-      color:#fff;line-height:1.42;font-weight:600;
-      font-size:1.58rem;letter-spacing:-.2px;
-      margin:0;padding:0 var(--padX);text-align:left;
-      opacity:var(--txtDim);
+      position:relative;
+      z-index:2;
+
+      /* ❌ opacity 금지 (모바일 글자 깨짐 원인) */
+      /* opacity:var(--txtDim); */
+
+      /* ✅ 대신 rgba로 밝기 조절 */
+      color:rgba(255,255,255,.92);
+
+      line-height:var(--lh);
+      font-weight:600;
+      font-size:var(--fz);
+      letter-spacing:var(--ls);
+
+      margin:0;
+      padding:0 var(--padX);
+      text-align:left;
+
+      /* ✅ 글자가 “지저분하게 내려앉는” 느낌 방지(그림자 과하지 않게) */
+      text-shadow:
+        0 2px 10px rgba(0,0,0,.55),
+        0 1px 0 rgba(0,0,0,.35);
+
+      /* ✅ 한글 줄바꿈 안정 */
+      word-break:keep-all;
+      overflow-wrap:anywhere;
+
+      /* ✅ 줄 하단 잘림 방지: iOS에서 가끔 도움이 됨 */
+      padding-bottom:0.12em;
     }
-    #energyHL .hl{color:var(--yellow);font-weight:900;}
+
+    #energyHL .hl{
+      color:var(--yellow);
+      font-weight:900;
+      text-shadow:
+        0 2px 12px rgba(0,0,0,.60),
+        0 1px 0 rgba(0,0,0,.40);
+    }
 
     /* 칸막이 음영 */
-    #energyHL .row::after{content:"";position:absolute;inset:auto 0 -10px 0;height:10px;background:var(--gapShade);} 
-    #energyHL .row:first-child::before{content:"";position:absolute;inset:-10px 0 auto 0;height:10px;background:var(--gapShade);} 
+    #energyHL .row::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 -10px 0;
+      height:10px;
+      background:var(--gapShade);
+      z-index:3;
+    }
+    #energyHL .row:first-child::before{
+      content:"";
+      position:absolute;
+      inset:-10px 0 auto 0;
+      height:10px;
+      background:var(--gapShade);
+      z-index:3;
+    }
 
+    /* ✅ 모바일: 고정 높이로 자르지 말고 “최소 높이 + 패딩”으로 안정화 */
     @media (max-width:600px){
-      #energyHL{--hRow:138px;--padX:18px;}
-      #energyHL .txt{font-size:1.36rem;}
+      #energyHL{
+        --hRow:138px;       /* 최소 높이만 유지(텍스트 많으면 자동으로 늘어남) */
+        --padX:18px;
+
+        /* ✅ 모바일에서 글자 비율 더 안정적으로 */
+        --fz:clamp(0.98rem, 3.6vw, 1.22rem);
+        --lh:1.62;
+        --ls:-.1px;
+
+        padding-top:64px;
+      }
+      #energyHL .row{
+        padding-block:16px; /* 하단 잘림 방지 */
+      }
+    }
+
+    @media (max-width:420px){
+      #energyHL{
+        --padX:16px;
+        --fz:clamp(0.96rem, 4.0vw, 1.18rem);
+      }
+    }
+
+    @media (max-width:360px){
+      #energyHL{
+        --padX:14px;
+        --fz:clamp(0.94rem, 4.4vw, 1.14rem);
+      }
     }
 
     /* ===== 배경 이미지 ===== */
@@ -181,9 +289,7 @@
     #energyHL .r2 .bg{background-image:url('../img/2.jpg');}
     #energyHL .r3 .bg{background-image:url('../img/3.jpg');}
     #energyHL .r4 .bg{background-image:url('../img/4.jpg');}
-    #energyHL .r5 .bg{background-image:url('../img/5.jpg');}
-
-
+    #energyHL .r5 .bg{background-image:url('../img/5.jpg');} 
      /* ================= Scope: #albuminWarn only ================= */
     #albuminWarn {
       --bg-dark: #0a0b0d;
